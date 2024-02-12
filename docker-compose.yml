@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+    env_file:
+      - .env
+    container_name: fastapi_app
+    command: gunicorn src.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker
+    ports:
+      - 9999:8000
